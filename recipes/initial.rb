@@ -13,7 +13,7 @@ end
 
 # 1. Packages / Dependencies
 include_recipe "apt" if platform?("ubuntu", "debian")
-include_recipe "yum::epel" if platform?("centos")
+include_recipe "yum::epel" if platform?("scientific")
 include_recipe "gitlab::git"
 include_recipe "redisio::install"
 include_recipe "redisio::enable"

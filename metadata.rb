@@ -9,7 +9,8 @@ version          '0.5.1'
 recipe "gitlab::initial", "Setting the initial"
 recipe "gitlab::install", "Installation"
 
-%w{redisio ruby_build postgresql mysql database postfix yum}.each do |dep|
+#%w{redisio ruby_build postgresql mysql database postfix yum}.each do |dep|
+%w{redisio ruby_build postgresql mysql database yum}.each do |dep|
   depends dep
 end
 

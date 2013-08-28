@@ -67,8 +67,8 @@ end
 end
 
 ### Copy the example Puma config
-template File.join(gitlab['path'], "config", "puma.rb") do
-  source "puma.rb.erb"
+template File.join(gitlab['path'], "config", "unicorn.rb") do
+  source "unicorn.rb.erb"
   user gitlab['user']
   group gitlab['group']
   variables({

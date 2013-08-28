@@ -18,9 +18,18 @@ end
 execute "Extracting and Building Git #{git['version']} from Source" do
   command <<-EOS
     unzip -q git-#{git['version']}.zip
-    cd git-#{git['version']} && make prefix=#{git['prefix']} install
+    cd git-#{git['version']} && make configure && ./configure --prefix=#{git['prefix']} && make all && make install
   EOS
   cwd Chef::Config['file_cache_path']
   creates "#{git['prefix']}/bin/git"
   not_if "git --version | grep #{git['version']}"
 end
+
+execute "Proxy Setting for git" do
+  command <<-EOS
+    git config --global http.proxy #{git['http_proxy']}
+    git config --global https.proxy #{git['https_proxy']}
+  EOS
+  action :nothing
+end
+

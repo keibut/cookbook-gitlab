@@ -7,7 +7,7 @@ gitlab = node['gitlab']
 
 # 7. Nginx
 ## Installation
-package "nginx" do 
+package "nginx" do
   action :install
 end
 

@@ -17,10 +17,10 @@
 
 APP_ROOT="<%= @path %>"
 APP_USER="<%= @user %>"
-DAEMON_OPTS="-C $APP_ROOT/config/puma.rb"
+DAEMON_OPTS="-C $APP_ROOT/config/unicorn.rb -E production"
 PID_PATH="$APP_ROOT/tmp/pids"
 SOCKET_PATH="$APP_ROOT/tmp/sockets"
-WEB_SERVER_PID="$PID_PATH/puma.pid"
+WEB_SERVER_PID="$PID_PATH/unicorn.pid"
 SIDEKIQ_PID="$PID_PATH/sidekiq.pid"
 STOP_SIDEKIQ="RAILS_ENV=<%= @env %> bundle exec rake sidekiq:stop"
 START_SIDEKIQ="RAILS_ENV=<%= @env %> bundle exec rake sidekiq:start"
@@ -52,7 +52,7 @@ start() {
   else
     if [ `whoami` = root ]; then
       execute "rm $SOCKET_PATH/gitlab.socket"
-      execute "RAILS_ENV=<%= @env %> bundle exec puma $DAEMON_OPTS"
+      execute "RAILS_ENV=<%= @env %> bundle exec unicorn_rails $DAEMON_OPTS > /dev/null 2>&1 &"
       execute "mkdir -p $PID_PATH && $START_SIDEKIQ  > /dev/null  2>&1 &"
       echo "$DESC started"
     fi
