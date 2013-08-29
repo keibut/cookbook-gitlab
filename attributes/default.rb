@@ -41,9 +41,13 @@ default['gitlab']['satellites_path'] = "/home/git/gitlab-satellites"
 default['gitlab']['git_path'] = "/usr/local/bin/git"
 default['gitlab']['host'] = "localhost"
 default['gitlab']['port'] = "80"
+default['gitlab']['unicorn_port'] = "18080"
 default['gitlab']['email_from'] = "gitlab@localhost"
 default['gitlab']['support_email'] = "support@localhost"
 
 # Gems
 default['gitlab']['bundle_install'] = "bundle install --path=.bundle --deployment"
 default['gitlab']['env'] = "production"
+
+# ssh environment config
+default['gitlab']['ssh_path'] = "/home/git/.ssh"

@@ -8,6 +8,9 @@
 # See http://unicorn.bogomips.org/Unicorn/Configurator.html for complete
 # documentation.
 
+# set
+application_path = "<%= @path %>"
+
 # Use at least one worker per core if you're on a dedicated server,
 # more will usually help for _short_ waits on databases/caches.
 worker_processes 2
@@ -17,7 +20,7 @@ worker_processes 2
 # as root unless it's from system init scripts.
 # If running the master process as root and the workers as an unprivileged
 # user, do this to switch euid/egid in the workers (also chowns logs):
-user "#{gitlab['user']}", "#{gitlab['group']}"
+user "<%= node['gitlab']['user'] %>", "<%= node['gitlab']['group'] %>"
 
 # Help ensure your application will always spawn in the symlinked
 # "current" directory that Capistrano sets up.
@@ -26,7 +29,7 @@ working_directory "#{application_path}" # available in 0.94.0+
 # listen on both a Unix domain socket and a TCP port,
 # we use a shorter backlog for quicker failover when busy
 listen "#{application_path}/tmp/sockets/gitlab.socket", :backlog => 64
-listen #{gitlab['port']}, :tcp_nopush => true
+listen <%= node['gitlab']['unicorn_port'] %>, :tcp_nopush => true
 
 # nuke workers after 30 seconds instead of 60 seconds (the default)
 timeout 30

@@ -20,7 +20,8 @@ template File.join(gitlab['shell_path'], "config.yml") do
   source "gitlab_shell.yml.erb"
   user gitlab['user']
   group gitlab['group']
-  notifies :run, "execute[gitlab-shell install]", :immediately
+#  notifies :run, "execute[gitlab-shell install]", :immediately
+  action :nothing
   variables({
     :user => gitlab['user'],
     :home => gitlab['home'],
@@ -31,6 +32,14 @@ template File.join(gitlab['shell_path'], "config.yml") do
     :redis_port => gitlab['redis_port'],
     :namespace => gitlab['namespace']
   })
+end
+
+## Edit .ssh environment for gitlab-shell shebang
+template File.join(gitlab['ssh_path'], "environment") do
+  source "environment.erb"
+  user gitlab['user']
+  group gitlab['group']
+  notifies :run, "execute[gitlab-shell install]", :immediately
 end
 
 ## Do setup

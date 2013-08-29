@@ -49,5 +49,5 @@ user gitlab['user'] do
 end
 
 user gitlab['user'] do
-  action :lock
+  action :nothing
 end
