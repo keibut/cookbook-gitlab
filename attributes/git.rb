@@ -1,6 +1,6 @@
 # Git
 default['gitlab']['git']['prefix'] = "/usr/local"
-default['gitlab']['git']['version'] = "1.7.12.4"
+default['gitlab']['git']['version'] = "1.8.4"
 default['gitlab']['git']['url'] = "https://github.com/git/git/archive/v#{node['gitlab']['git']['version']}.zip"
 default['gitlab']['git']['http_proxy'] = nil
 default['gitlab']['git']['https_proxy'] = nil
