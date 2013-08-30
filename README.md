@@ -155,8 +155,8 @@ admin@local.host
 
 ## Links
 
-* [GitLab Installation](https://github.com/gitlabhq/gitlabhq/blob/master/doc/install/installation.md)
-* [Qiita Document](http://qiita.com/items/6491a268bfc95d0a5be4)
+* [GitLab Installation](https://github.com/gitlabhq/gitlabhq/blob/6.0-stable/doc/install/installation.md)
+* [Qiita Document](http://qiita.com/items/6491a268bfc95d0a5be4) (ogom-san's)
 
 
 ## License 
